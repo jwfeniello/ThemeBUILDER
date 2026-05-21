@@ -16,9 +16,22 @@ import webbrowser
 import subprocess
 
 ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
-sg.theme('PythonPlus')
+sg.theme_add_new('VitaDark', {
+    'BACKGROUND': '#0f1923', 'TEXT': '#e2e8f0',
+    'INPUT': '#1c2d3f', 'TEXT_INPUT': '#e2e8f0', 'SCROLL': '#2d4a6b',
+    'BUTTON': ('#e2e8f0', '#1e3a5f'),
+    'PROGRESS': ('#f0c040', '#0f1923'),
+    'BORDER': 1, 'SLIDER_DEPTH': 0, 'PROGRESS_DEPTH': 0,
+})
+sg.theme('VitaDark')
 default_button = sg.theme_button_color()
 sg.set_options(font=("Helvetica", 13))
+
+BG     = '#0f1923'
+C_PRI  = ('#0f1923', '#f0c040')
+C_DEST = ('#ffffff', '#7f1d1d')
+C_SEC  = ('#e2e8f0', '#1e3a5f')
+C_SNAP = ('#f0c040', '#334155')
 box_coordinates = ((0,48),(226,80))
 txt_coordinates = (113,65)
 
@@ -52,95 +65,68 @@ def c(elems):
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
 
-if 1==1:    # DEFAULT USER OPTIONS
-    LS = ""
-    PG1 = ""
-    PG2 = ""
-    PG3 = ""
-    PG4 = ""
-    PG5 = ""
-    PG6 = ""
-    PG7 = ""
-    PG8 = ""
-    PG9 = ""
-    PG10 = ""
-    PG1w = "13"
-    PG2w = "13"
-    PG3w = "13"
-    PG4w = "13"
-    PG5w = "13"
-    PG6w = "13"
-    PG7w = "13"
-    PG8w = "13"
-    PG9w = "13"
-    PG10w = "13"
-    BGM = "Default"
-    CLOPOS = "Bottom Left"
-    ICOSET = "Default"
+# DEFAULT USER OPTIONS
+LS = ""
+pg    = [""] * 10
+pg_w  = ["13"] * 10
+BGM = "Default"
+CLOPOS = "Bottom Left"
+ICOSET = "Default"
 
-    # DEFAULT IMAGES
-    Image_LS_Overlay = "assets/preview/default/overlay.png"
-    Image_NoteNO = "assets/preview/default/LAnoteno.png"
-    Image_NoteNOx = "assets\preview\TEMP\LAnoteno.png"
-    Image_NoteNEW = "assets/preview/default/LAnotenew.png"
-    Image_NoteNEWx = "assets\preview\TEMP\LAnotenew.png"
-    NOTI_inon = "assets/preview/default/LAnoteno_def.png"
-    NOTI_inew = "assets/preview/default/LAnotenew_def.png"
-    NOTI_imsk = "assets/preview/default/LAnotemsk.png"
-    Image_Icon1 = "assets/preview/default/icon_web.png"
-    Image_Icon2 = "assets/preview/default/icon_settings.png"
-    Image_Icon3 = "assets/preview/default/icon_calendar.png"
-    Image_Icon4 = "assets/preview/default/icon_photos.png"
-    Image_base = "assets/preview/default/base.png"
-    Image_curs = "assets/preview/default/curs.png"
-    ORIG_BGM = "assets\preview\default\origional.at9"
+# DEFAULT IMAGES
+Image_LS_Overlay = "assets/preview/default/overlay.png"
+Image_NoteNO = "assets/preview/default/LAnoteno.png"
+Image_NoteNOx = "assets\preview\TEMP\LAnoteno.png"
+Image_NoteNEW = "assets/preview/default/LAnotenew.png"
+Image_NoteNEWx = "assets\preview\TEMP\LAnotenew.png"
+NOTI_inon = "assets/preview/default/LAnoteno_def.png"
+NOTI_inew = "assets/preview/default/LAnotenew_def.png"
+NOTI_imsk = "assets/preview/default/LAnotemsk.png"
+Image_Icon1 = "assets/preview/default/icon_web.png"
+Image_Icon2 = "assets/preview/default/icon_settings.png"
+Image_Icon3 = "assets/preview/default/icon_calendar.png"
+Image_Icon4 = "assets/preview/default/icon_photos.png"
+Image_base = "assets/preview/default/base.png"
+Image_curs = "assets/preview/default/curs.png"
+ORIG_BGM = "assets\preview\default\origional.at9"
 
-    # MORE DEFAULTS
-    TBC = rgb_to_hex((0,0,0))
-    TBTC = rgb_to_hex((255,255,255))
+# MORE DEFAULTS
+TBC = rgb_to_hex((0,0,0))
+TBTC = rgb_to_hex((255,255,255))
 
-    CCr = 255
-    CCg = 255
-    CCb = 255
-    CLOCOL = rgb_to_hex((255,255,255))
+CCr = 255
+CCg = 255
+CCb = 255
+CLOCOL = rgb_to_hex((255,255,255))
 
-    TBRED = 0
-    TBGRE = 0
-    TBBLU = 0
-    TBTRED = 255
-    TBTGRE = 255
-    TBTBLU = 255
-    
-    NOT_BOX_RED = 42
-    NOT_BOX_GRE = 42
-    NOT_BOX_BLU = 42
-    NOT_TX_RED = 255
-    NOT_TX_GRE = 255
-    NOT_TX_BLU = 255
-    NOT_BOXc = '#2a2a2a'
-    NOT_TXTc = '#ffffff'
+TBRED = 0
+TBGRE = 0
+TBBLU = 0
+TBTRED = 255
+TBTGRE = 255
+TBTBLU = 255
 
-    NOT_BOX_BOX_COL = '#2a2a2a'
-    NOT_BOX_FRA_COL = '#cccccc'
-    NOT_BOX_TXT_COL = '#ffffff'
-    NOT_BBL_TXT_COL = '#ffffff'
-    
-    PG1txtc = '#ffffff'
-    PG2txtc = '#ffffff'
-    PG3txtc = '#ffffff'
-    PG4txtc = '#ffffff'
-    PG5txtc = '#ffffff'
-    PG6txtc = '#ffffff'
-    PG7txtc = '#ffffff'
-    PG8txtc = '#ffffff'
-    PG9txtc = '#ffffff'
-    PG10txtc = '#ffffff'
+NOT_BOX_RED = 42
+NOT_BOX_GRE = 42
+NOT_BOX_BLU = 42
+NOT_TX_RED = 255
+NOT_TX_GRE = 255
+NOT_TX_BLU = 255
+NOT_BOXc = '#2a2a2a'
+NOT_TXTc = '#ffffff'
 
-    VITA = 0
-    LA_View = 1
-    NOT_View = 0
-    H1,V1 = 0,110
-    H2,V2 = 0,110
+NOT_BOX_BOX_COL = '#2a2a2a'
+NOT_BOX_FRA_COL = '#cccccc'
+NOT_BOX_TXT_COL = '#ffffff'
+NOT_BBL_TXT_COL = '#ffffff'
+
+pg_txtc = ['#ffffff'] * 10
+
+VITA = 0
+LA_View = 1
+NOT_View = 0
+H1,V1 = 0,110
+H2,V2 = 0,110
 
 def EDIT_THEME():
     global ThemeName
@@ -158,46 +144,7 @@ def EDIT_THEME():
     global TBC
     global TBTC
     global LS
-    global PG1
-    global PG2
-    global PG3
-    global PG4
-    global PG5
-    global PG6
-    global PG7
-    global PG8
-    global PG9
-    global PG10
-    global PG1_old
-    global PG2_old
-    global PG3_old
-    global PG4_old
-    global PG5_old
-    global PG6_old
-    global PG7_old
-    global PG8_old
-    global PG9_old
-    global PG10_old
-    global PG1w
-    global PG2w
-    global PG3w
-    global PG4w
-    global PG5w
-    global PG6w
-    global PG7w
-    global PG8w
-    global PG9w
-    global PG10w
-    global PG1txtc
-    global PG2txtc
-    global PG3txtc
-    global PG4txtc
-    global PG5txtc
-    global PG6txtc
-    global PG7txtc
-    global PG8txtc
-    global PG9txtc
-    global PG10txtc
+    global pg, pg_w, pg_txtc
     global exportable
     global GUI_Choice
     
@@ -207,12 +154,12 @@ def EDIT_THEME():
         [sg.Text('Version :',s=9,justification='r'), sg.Input(default_text=ThemeVers,k='2nd'),sg.Text("  ")],
         [sg.Text('Creator :',s=9,justification='r'), sg.Input(default_text=Creator,k='3rd'),sg.Text("  ")],
         [sg.Text("")],
-        c([sg.Text("           "),sg.Button('Ok',s=12),sg.Button('Cancel',s=12),sg.Text("    "),sg.Input(default_text="0", key='iniFILE',visible=False),sg.FileBrowse('Load',s=12,k='-load-',file_types=(('theme.ini', 'theme.ini'),))]),
+        c([sg.Text("           "),sg.Button('Ok',s=12,button_color=C_PRI),sg.Button('Cancel',s=12,button_color=C_SEC),sg.Text("    "),sg.Input(default_text="0", key='iniFILE',visible=False),sg.FileBrowse('Load',s=12,k='-load-',file_types=(('theme.ini', 'theme.ini'),))]),
         [sg.Text("")]
         ]
 
     layoutINFOx = [[sg.Column(layoutINFO)]]
-    windowINFO = sg.Window('THEME INFORMATION', layoutINFOx, grab_anywhere=True, no_titlebar=True, keep_on_top=True, finalize=True, background_color='#015BBB',margins=(0,0))
+    windowINFO = sg.Window('THEME INFORMATION', layoutINFOx, grab_anywhere=True, no_titlebar=True, keep_on_top=True, finalize=True, background_color=BG,margins=(0,0))
     windowINFO['1st'].SetFocus()
     windowINFO['1st'].Widget.icursor('end')
     windowINFO['1st'].bind('<Return>', 'return')
@@ -309,80 +256,20 @@ def EDIT_THEME():
                 os.system(cmdline2)
                 os.system(cmdline3)
                 LS="assets\preview\TEMP\\bg0.png"
-                PG1="assets\preview\TEMP\\bg1.png"
-                PG2="assets\preview\TEMP\\bg2.png"
-                PG3="assets\preview\TEMP\\bg3.png"
-                PG4="assets\preview\TEMP\\bg4.png"
-                PG5="assets\preview\TEMP\\bg5.png"
-                PG6="assets\preview\TEMP\\bg6.png"
-                PG7="assets\preview\TEMP\\bg7.png"
-                PG8="assets\preview\TEMP\\bg8.png"
-                PG9="assets\preview\TEMP\\bg9.png"
-                PG10="assets\preview\TEMP\\bg10.png"
-                
+                for i in range(10):
+                    pg[i] = f'assets\\preview\\TEMP\\bg{i+1}.png'
+
                 window['LS'].update(LS)
-                window['PG1'].update(PG1)
-                window['PG2'].update(PG2)
-                window['PG3'].update(PG3)
-                window['PG4'].update(PG4)
-                window['PG5'].update(PG5)
-                window['PG6'].update(PG6)
-                window['PG7'].update(PG7)
-                window['PG8'].update(PG8)
-                window['PG9'].update(PG9)
-                window['PG10'].update(PG10)
-                
-                PG1w = ThemeBUILD["WAVE PATTERNS"]["Page 1"]
-                window['PG1w'].update(PG1w)
-                PG2w = ThemeBUILD["WAVE PATTERNS"]["Page 2"]
-                window['PG2w'].update(PG2w)
-                PG3w = ThemeBUILD["WAVE PATTERNS"]["Page 3"]
-                window['PG3w'].update(PG3w)
-                PG4w = ThemeBUILD["WAVE PATTERNS"]["Page 4"]
-                window['PG4w'].update(PG4w)
-                PG5w = ThemeBUILD["WAVE PATTERNS"]["Page 5"]
-                window['PG5w'].update(PG5w)
-                PG6w = ThemeBUILD["WAVE PATTERNS"]["Page 6"]
-                window['PG6w'].update(PG6w)
-                PG7w = ThemeBUILD["WAVE PATTERNS"]["Page 7"]
-                window['PG7w'].update(PG7w)
-                PG8w = ThemeBUILD["WAVE PATTERNS"]["Page 8"]
-                window['PG8w'].update(PG8w)
-                PG9w = ThemeBUILD["WAVE PATTERNS"]["Page 9"]
-                window['PG9w'].update(PG9w)
-                PG10w = ThemeBUILD["WAVE PATTERNS"]["Page 10"]
-                window['PG10w'].update(PG10w)
-                
-                PG1txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 1"]
-                PG1txtc =("#"+PG1txtc)
-                window['PG1tc'].update(button_color=PG1txtc)
-                PG2txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 2"]
-                PG2txtc =("#"+PG2txtc)
-                window['PG2tc'].update(button_color=PG2txtc)
-                PG3txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 3"]
-                PG3txtc =("#"+PG3txtc)
-                window['PG3tc'].update(button_color=PG3txtc)
-                PG4txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 4"]
-                PG4txtc =("#"+PG4txtc)
-                window['PG4tc'].update(button_color=PG4txtc)
-                PG5txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 5"]
-                PG5txtc =("#"+PG5txtc)
-                window['PG5tc'].update(button_color=PG5txtc)
-                PG6txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 6"]
-                PG6txtc =("#"+PG6txtc)
-                window['PG6tc'].update(button_color=PG6txtc)
-                PG7txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 7"]
-                PG7txtc =("#"+PG7txtc)
-                window['PG7tc'].update(button_color=PG7txtc)
-                PG8txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 8"]
-                PG8txtc =("#"+PG8txtc)
-                window['PG8tc'].update(button_color=PG8txtc)
-                PG9txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 9"]
-                PG9txtc =("#"+PG9txtc)
-                window['PG9tc'].update(button_color=PG9txtc)
-                PG10txtc = ThemeBUILD["PAGE TEXT COLORS"]["Page 10"]
-                PG10txtc =("#"+PG10txtc)
-                window['PG10tc'].update(button_color=PG10txtc)
+                for i in range(10):
+                    window[f'PG{i+1}'].update(pg[i])
+
+                for i in range(10):
+                    pg_w[i] = ThemeBUILD["WAVE PATTERNS"][f"Page {i+1}"]
+                    window[f'PG{i+1}w'].update(pg_w[i])
+
+                for i in range(10):
+                    pg_txtc[i] = "#" + ThemeBUILD["PAGE TEXT COLORS"][f"Page {i+1}"]
+                    window[f'PG{i+1}tc'].update(button_color=pg_txtc[i])
                 
                 checkfile=('Created Themes/'+ThemeName+'/Theme.xml')
                 if Path(checkfile).is_file():
@@ -452,7 +339,7 @@ def CLOCK_COLOR():
         ]
 
     layoutCLOCKx = [[sg.Column(layoutCLOCK)]]
-    windowCLOCK = sg.Window('Select Clock Color', layoutCLOCKx, no_titlebar=True, grab_anywhere=True, keep_on_top=True,background_color='#015BBB',margins=(0,0))
+    windowCLOCK = sg.Window('Select Clock Color', layoutCLOCKx, no_titlebar=True, grab_anywhere=True, keep_on_top=True,background_color=BG,margins=(0,0))
     window.hide()
     while True:
         eventC, valuesTC = windowCLOCK.read(10)
@@ -559,7 +446,7 @@ def BAR_COLOR():
         ]
     
     layoutCOLx = [[sg.Column(layoutCOL)]]
-    windowCOL = sg.Window('Select Titlebar Colors', layoutCOLx, no_titlebar=True, grab_anywhere=True, keep_on_top=True,background_color='#015BBB',margins=(0,0))
+    windowCOL = sg.Window('Select Titlebar Colors', layoutCOLx, no_titlebar=True, grab_anywhere=True, keep_on_top=True,background_color=BG,margins=(0,0))
     window.hide()
     
     while True:
@@ -675,38 +562,8 @@ def BAR_COLOR():
             window.UnHide()
 def PAGE_TEXT_COLOR():
     global PAGE_TEXT
-    global PG1txtc
-    global PG2txtc
-    global PG3txtc
-    global PG4txtc
-    global PG5txtc
-    global PG6txtc
-    global PG7txtc
-    global PG8txtc
-    global PG9txtc
-    global PG10txtc
-    CLOCOL='White'
-    
-    if PAGE_TEXT == 1:
-        CLOCOL = PG1txtc
-    if PAGE_TEXT == 2:
-        CLOCOL = PG2txtc
-    if PAGE_TEXT == 3:
-        CLOCOL = PG3txtc
-    if PAGE_TEXT == 4:
-        CLOCOL = PG4txtc
-    if PAGE_TEXT == 5:
-        CLOCOL = PG5txtc
-    if PAGE_TEXT == 6:
-        CLOCOL = PG6txtc
-    if PAGE_TEXT == 7:
-        CLOCOL = PG7txtc
-    if PAGE_TEXT == 8:
-        CLOCOL = PG8txtc
-    if PAGE_TEXT == 9:
-        CLOCOL = PG9txtc
-    if PAGE_TEXT == 10:
-        CLOCOL = PG10txtc
+    global pg_txtc
+    CLOCOL = pg_txtc[PAGE_TEXT - 1]
     
     global SCREEN
     
@@ -731,7 +588,7 @@ def PAGE_TEXT_COLOR():
         ]
 
     layoutTEXTCOLx = [[sg.Column(layoutTEXTCOL)]]
-    windowTEXTCOL = sg.Window('Select Icon Text Color', layoutTEXTCOLx, grab_anywhere=True, no_titlebar=True, keep_on_top=True, background_color='#015BBB',margins=(0,0))
+    windowTEXTCOL = sg.Window('Select Icon Text Color', layoutTEXTCOLx, grab_anywhere=True, no_titlebar=True, keep_on_top=True, background_color=BG,margins=(0,0))
     window.hide()
     
     while True:
@@ -789,54 +646,16 @@ def PAGE_TEXT_COLOR():
         windowTEXTCOL['CLOCOLORC'].update(text_color=(CLOCOL))        
 
         if eventTC == 'OK':
-            if PAGE_TEXT == 1:
-                PG1txtc = CLOCOL
-                window['PG1tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 2:
-                PG2txtc = CLOCOL
-                window['PG2tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 3:
-                PG3txtc = CLOCOL
-                window['PG3tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 4:
-                PG4txtc = CLOCOL
-                window['PG4tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 5:
-                PG5txtc = CLOCOL
-                window['PG5tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 6:
-                PG6txtc = CLOCOL
-                window['PG6tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 7:
-                PG7txtc = CLOCOL
-                window['PG7tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 8:
-                PG8txtc = CLOCOL
-                window['PG8tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 9:
-                PG9txtc = CLOCOL
-                window['PG9tc'].update(button_color=(CLOCOL))
-            if PAGE_TEXT == 10:
-                PG10txtc = CLOCOL
-                window['PG10tc'].update(button_color=(CLOCOL))
-            
+            pg_txtc[PAGE_TEXT - 1] = CLOCOL
+            window[f'PG{PAGE_TEXT}tc'].update(button_color=CLOCOL)
             SCREEN = ('UPDADED')
             windowTEXTCOL.close()
             window.UnHide()
-            
+
         if eventTC == 'Set ALL':
-            PG1txtc=PG2txtc=PG3txtc=PG4txtc=PG5txtc=PG6txtc=PG7txtc=PG8txtc=PG9txtc=PG10txtc = CLOCOL
-            window['PG1tc'].update(button_color=(CLOCOL))
-            window['PG2tc'].update(button_color=(CLOCOL))
-            window['PG3tc'].update(button_color=(CLOCOL))
-            window['PG4tc'].update(button_color=(CLOCOL))
-            window['PG5tc'].update(button_color=(CLOCOL))
-            window['PG6tc'].update(button_color=(CLOCOL))
-            window['PG7tc'].update(button_color=(CLOCOL))
-            window['PG8tc'].update(button_color=(CLOCOL))
-            window['PG9tc'].update(button_color=(CLOCOL))
-            window['PG10tc'].update(button_color=(CLOCOL))
-            
+            pg_txtc[:] = [CLOCOL] * 10
+            for n in range(1, 11):
+                window[f'PG{n}tc'].update(button_color=CLOCOL)
             SCREEN = ('UPDADED')
             windowTEXTCOL.close()
 
@@ -955,7 +774,7 @@ def NOTIFICATION_EDIT():
         ]
         
     layoutCOLx = [[sg.Column(layoutCOL)]]    
-    windowCOL = sg.Window('Select Noticication Options', layoutCOLx, transparent_color='#000001',no_titlebar=True, keep_on_top=True, grab_anywhere=True,    background_color='#015BBB',margins=(0,0))
+    windowCOL = sg.Window('Select Noticication Options', layoutCOLx, transparent_color='#000001',no_titlebar=True, keep_on_top=True, grab_anywhere=True,    background_color=BG,margins=(0,0))
     window.hide()
     SCREEN = ('UPDADED')
     NEW_File = 0
@@ -1341,12 +1160,12 @@ def EXTRA_TOOLS():
         [sg.Stretch(),sg.Input(key='-LSPRE-',default_text=File1,visible=False),sg.FileBrowse(initial_folder=VitaPATH,file_types=(('Images', '*.png *.jpg'),('ALL','*.* *'))),sg.Stretch(),sg.Button("<-----    SWAP IMAGES    ----->"),sg.Stretch(),sg.Input(key='-LAPRE-',default_text=File2,visible=False),sg.FileBrowse(initial_folder=VitaPATH,file_types=(('Images', '*.png *.jpg'),('ALL','*.* *'))),sg.Stretch()],
         [sg.HorizontalSeparator()],
         [sg.Text("")],
-        c([sg.Button("Export",button_color=('yellow','black'),s=12),sg.Text("",s=2),sg.Button("Cancel",s=12)]),
+        c([sg.Button("Export",button_color=C_PRI,s=12),sg.Text("",s=2),sg.Button("Cancel",s=12)]),
         [sg.Text("")],
         ]
         
     layoutTOOLSx = [[sg.Column(layoutTOOLS)]]
-    windowTOOLS = sg.Window('Extra Tools', layoutTOOLSx, no_titlebar=True, keep_on_top=True, grab_anywhere=True, background_color='#015BBB',margins=(0,0))
+    windowTOOLS = sg.Window('Extra Tools', layoutTOOLSx, no_titlebar=True, keep_on_top=True, grab_anywhere=True, background_color=BG,margins=(0,0))
     window.hide()
     SCREEN = "UPDADED"
     LSPRE_old = File1
@@ -1702,7 +1521,7 @@ def GenerateTHEME_image():
 
     layoutGT_5 = [
         [sg.Text("")],
-        c([sg.Button("- START -",button_color=('Yellow','Black'),s=15),sg.Text("  "),sg.Button("Cancel",s=15)]),
+        c([sg.Button("- START -",button_color=C_PRI,s=15),sg.Text("  "),sg.Button("Cancel",s=15)]),
         [sg.Text("")],
         ]
 
@@ -1713,7 +1532,7 @@ def GenerateTHEME_image():
         c([sg.Column(layoutGT_5)]),]
         
     layoutGTx = [[sg.Column(layoutGTfull)]]
-    windowGT = sg.Window('Generate Theme Image', layoutGTx, transparent_color='#000001', no_titlebar=True, keep_on_top=True, grab_anywhere=True, background_color='#015BBB',margins=(0,0),finalize=True)
+    windowGT = sg.Window('Generate Theme Image', layoutGTx, transparent_color='#000001', no_titlebar=True, keep_on_top=True, grab_anywhere=True, background_color=BG,margins=(0,0),finalize=True)
     window.hide()
     SCREEN = 'UPDADED'
     graph = windowGT['LOGO_Preview']
@@ -2033,15 +1852,18 @@ def find_last_two_files_created(VitaPATH):
 if 1==1:
 
     layoutT1 = [
-        [sg.Text("Theme name :",s=12,justification='r')],
-        [sg.Text("Version :",s=12,justification='r')],
-        [sg.Text("Creator :",s=12,justification='r')],
+        [sg.Text("Theme name :", s=12, justification='r', font=('Helvetica', 13, 'bold'))],
+        [sg.Text("Version :",    s=12, justification='r')],
+        [sg.Text("Creator :",    s=12, justification='r')],
         ]
 
     layoutT2 = [
-        [sg.Text(ThemeName,k='Theme_Name'),sg.Text('WARNING : A THEME WITH THIS NAME ALREADY EXISTS.!',text_color='Red',k='Warn',visible=False)],
-        [sg.Text(ThemeVers,k='Theme_Version')],
-        [sg.Text(Creator,k='Theme_Creator',s=20),sg.Button('Change details',s=15),sg.Button('Export',s=7,visible=False,k='-Export-')],
+        [sg.Text(ThemeName, k='Theme_Name', text_color='#f0c040', font=('Helvetica', 13, 'bold')),
+         sg.Text('  ⚠  A theme with this name already exists!', text_color='#f87171', k='Warn', visible=False)],
+        [sg.Text(ThemeVers, k='Theme_Version', text_color='#94a3b8')],
+        [sg.Text(Creator,   k='Theme_Creator', s=20, text_color='#94a3b8'),
+         sg.Button('Change Details', s=15, button_color=C_SEC),
+         sg.Button('Export', s=7, visible=False, k='-Export-', button_color=C_PRI)],
         ]
 
     layoutT3 = [
@@ -2049,46 +1871,63 @@ if 1==1:
         ]
 
     layoutT4 = [
-        [sg.Text("Lockscreen Clock Position :",s=25,justification='r'),sg.InputCombo(['Top Left', 'Bottom Left', 'Bottom Right'], size=(16, 0),key='-CLOPOS-',default_value=CLOPOS)],
-        [sg.Text("Clock Color :",s=25,justification='r'),sg.Button("Change",s=15,k='CLOCKCOL')],
-        [sg.Text("Titlebar Colors :",s=25,justification='r'),sg.Button("Change",s=15,k='TBTc')],
+        [sg.Text("Clock Position :", s=20, justification='r'),
+         sg.InputCombo(['Top Left', 'Bottom Left', 'Bottom Right'], size=(16, 0), key='-CLOPOS-', default_value=CLOPOS)],
+        [sg.Text("Clock Color :",    s=20, justification='r'), sg.Button("Change", s=12, k='CLOCKCOL', button_color=C_SEC)],
+        [sg.Text("Titlebar Colors :", s=20, justification='r'), sg.Button("Change", s=12, k='TBTc', button_color=C_SEC)],
         ]
 
     layoutM1 = [
         [sg.Text("")],
-        [sg.Text("Lockscreen :",s=12,justification='r'),sg.Input(key='LS',default_text=LS),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text("",s=1),sg.Button('Waves',s=8)],
-        [sg.Text("Page 1 :",s=12,justification='r'),sg.Input(key='PG1',default_text=PG1),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG1w',default_value=PG1w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG1txtc,k='PG1tc'),sg.Text(" ")],
-        [sg.Text("Page 2 :",s=12,justification='r'),sg.Input(key='PG2',default_text=PG2),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG2w',default_value=PG2w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG2txtc,k='PG2tc'),sg.Text(" ")],
-        [sg.Text("Page 3 :",s=12,justification='r'),sg.Input(key='PG3',default_text=PG3),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG3w',default_value=PG3w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG3txtc,k='PG3tc'),sg.Text(" ")],
-        [sg.Text("Page 4 :",s=12,justification='r'),sg.Input(key='PG4',default_text=PG4),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG4w',default_value=PG4w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG4txtc,k='PG4tc'),sg.Text(" ")],
-        [sg.Text("Page 5 :",s=12,justification='r'),sg.Input(key='PG5',default_text=PG5),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG5w',default_value=PG5w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG5txtc,k='PG5tc'),sg.Text(" ")],
-        [sg.Text("Page 6 :",s=12,justification='r'),sg.Input(key='PG6',default_text=PG6),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG6w',default_value=PG6w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG6txtc,k='PG6tc'),sg.Text(" ")],
-        [sg.Text("Page 7 :",s=12,justification='r'),sg.Input(key='PG7',default_text=PG7),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG7w',default_value=PG7w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG7txtc,k='PG7tc'),sg.Text(" ")],
-        [sg.Text("Page 8 :",s=12,justification='r'),sg.Input(key='PG8',default_text=PG8),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG8w',default_value=PG8w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG8txtc,k='PG8tc'),sg.Text(" ")],
-        [sg.Text("Page 9 :",s=12,justification='r'),sg.Input(key='PG9',default_text=PG9),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG9w',default_value=PG9w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG9txtc,k='PG9tc'),sg.Text(" ")],
-        [sg.Text("Page 10 :",s=12,justification='r'),sg.Input(key='PG10',default_text=PG10),sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'),('ALL','*.* *'))),sg.Text(" Wave :"),sg.InputCombo([i for i in range(0, 31)], size=(3, 10),key='PG10w',default_value=PG10w),sg.Text("Text Color :"),sg.Button("  ",button_color=PG10txtc,k='PG10tc'),sg.Text(" ")],
+        [sg.Text("Lockscreen :", s=12, justification='r'),
+         sg.Input(key='LS', default_text=LS),
+         sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'), ('ALL', '*.* *')), button_color=C_SEC),
+         sg.Text("", s=1),
+         sg.Button('Waves', s=8, button_color=C_SEC)],
+        *[
+            [sg.Text(f"Page {n} :", s=12, justification='r'),
+             sg.Input(key=f'PG{n}', default_text=pg[n-1]),
+             sg.FileBrowse(file_types=(('Images', '*.png *.jpg *.gif *.bmp'), ('ALL', '*.* *')), button_color=C_SEC),
+             sg.Text("Wave :"),
+             sg.InputCombo([i for i in range(0, 31)], size=(3, 10), key=f'PG{n}w', default_value=pg_w[n-1]),
+             sg.Text("Text:"),
+             sg.Button("  ", button_color=pg_txtc[n-1], k=f'PG{n}tc', tooltip='Set page text color')]
+            for n in range(1, 11)
+        ],
         [sg.Text("")],
-        [sg.Text("Icon Set :",s=12,justification='r'),sg.Input(k='ICOSET',default_text=ICOSET),sg.FolderBrowse(initial_folder='IconSet/')],
-        [sg.Text("",s=12),sg.Button("Create NEW IconSet",s=18),sg.Button("Use DEFAULT IconSet",s=19)],
-        
+        [sg.Text("Icon Set :", s=12, justification='r'),
+         sg.Input(k='ICOSET', default_text=ICOSET),
+         sg.FolderBrowse(initial_folder='IconSet/', button_color=C_SEC)],
+        [sg.Text("", s=12),
+         sg.Button("Create Icon Set", s=16, button_color=C_SEC),
+         sg.Button("Use Default Icons", s=17, button_color=C_SEC)],
         [sg.Text("")],
         ]
 
+    _vbtn = ('yellow', '#334155')
     layoutM2 = [
-        c([(sg.Graph((390,220), (0,0), (390,220), key='-Image_LS_Preview-'))]),
+        c([(sg.Graph((390, 220), (0, 0), (390, 220), key='-Image_LS_Preview-'))]),
         [sg.HorizontalSeparator()],
-        c([(sg.Graph((390,220), (0,0), (390,220), key='-Image_LA_Preview-'))]),
-        [sg.Text("Preview :",s=8,justification='c'),sg.Button('1',button_color=('yellow','grey'),k='V1'),sg.Button('2',button_color=('yellow','grey'),k='V2'),sg.Button('3',button_color=('yellow','grey'),k='V3'),sg.Button('4',button_color=('yellow','grey'),k='V4'),sg.Button('5',button_color=('yellow','grey'),k='V5'),sg.Button('6',button_color=('yellow','grey'),k='V6'),sg.Button('7',button_color=('yellow','grey'),k='V7'),sg.Button('8',button_color=('yellow','grey'),k='V8'),sg.Button('9',button_color=('yellow','grey'),k='V9'),sg.Button('10',button_color=('yellow','grey'),k='V10')],
-        [sg.Text("Notifications :",s=12),sg.Button("Show / Hide preview"),sg.Button("Change",k='EDIT_NOTE',s=8)]
+        c([(sg.Graph((390, 220), (0, 0), (390, 220), key='-Image_LA_Preview-'))]),
+        [sg.Text("Page :", s=6, justification='r'),
+         *[sg.Button(str(n), button_color=_vbtn, k=f'V{n}', pad=(1, 1)) for n in range(1, 11)]],
+        [sg.Text("Notifications :", s=12),
+         sg.Button("Show / Hide Preview", button_color=C_SEC),
+         sg.Button("Change", k='EDIT_NOTE', s=8, button_color=C_SEC)]
         ]
 
     layout = [
-        [sg.Column(layoutT1), sg.Column(layoutT2), sg.Column(layoutT3), sg.Stretch(),sg.Column(layoutT4)],
+        [sg.Column(layoutT1), sg.Column(layoutT2), sg.Column(layoutT3), sg.Stretch(), sg.Column(layoutT4)],
         [sg.HorizontalSeparator()],
-        [sg.Column(layoutM1), sg.VerticalSeparator(), sg.Column(layoutM2)],# sg.VerticalSeparator()],
+        [sg.Column(layoutM1), sg.VerticalSeparator(), sg.Column(layoutM2)],
         [sg.HorizontalSeparator()],
-        [sg.Text("")],
-        [sg.Text("Music :",s=12,justification='r'),sg.Input(key='BGM',default_text=BGM),sg.FileBrowse(file_types=(('Audio', '*.wav *.mp3 *.at9'),('ALL','*.* *'))),sg.Button('Use DEFAULT music'),sg.Stretch(),sg.Button('  - GENERATE THEME -  ',button_color=('Yellow','Black')),sg.Text("   ")],
+        [sg.Text("Music :", s=12, justification='r'),
+         sg.Input(key='BGM', default_text=BGM),
+         sg.FileBrowse(file_types=(('Audio', '*.wav *.mp3 *.at9'), ('ALL', '*.* *')), button_color=C_SEC),
+         sg.Button('Use Default Music', button_color=C_SEC),
+         sg.Stretch(),
+         sg.Button('  Generate Theme  ', button_color=C_PRI, font=('Helvetica', 13, 'bold')),
+         sg.Text("   ")],
         [sg.Text("")],
         ]
         
@@ -2102,26 +1941,8 @@ if 1==1:
     COLOR_TXT_old = (TBTC)
     ICOSET_old = (ICOSET)
     BGM_old = (BGM)
-    PG1_old = (PG1)
-    PG2_old = (PG2)
-    PG3_old = (PG3)
-    PG4_old = (PG4)
-    PG5_old = (PG5)
-    PG6_old = (PG6)
-    PG7_old = (PG7)
-    PG8_old = (PG8)
-    PG9_old = (PG9)
-    PG10_old = (PG10)
-    PG1w_old = (PG1w)
-    PG2w_old = (PG2w)
-    PG3w_old = (PG3w)
-    PG4w_old = (PG4w)
-    PG5w_old = (PG5w)
-    PG6w_old = (PG6w)
-    PG7w_old = (PG7w)
-    PG8w_old = (PG8w)
-    PG9w_old = (PG9w)
-    PG10w_old = (PG10w)
+    pg_old   = list(pg)
+    pg_w_old = list(pg_w)
     
     while True:
         event, values = window.read(10)
@@ -2170,36 +1991,8 @@ if 1==1:
             # THE MAIN WINDOW - LIVEAREA PREVIEW
             
             window['-Image_LA_Preview-'].erase()
-            if LA_View == 1:
-                Image_LA_Preview='assets/preview/TEMP/Page1.png'
-                Preview_TXTColor=PG1txtc
-            if LA_View == 2:
-                Image_LA_Preview='assets/preview/TEMP/Page2.png'
-                Preview_TXTColor=PG2txtc
-            if LA_View == 3:
-                Image_LA_Preview='assets/preview/TEMP/Page3.png'
-                Preview_TXTColor=PG3txtc
-            if LA_View == 4:
-                Image_LA_Preview='assets/preview/TEMP/Page4.png'
-                Preview_TXTColor=PG4txtc
-            if LA_View == 5:
-                Image_LA_Preview='assets/preview/TEMP/Page5.png'
-                Preview_TXTColor=PG5txtc
-            if LA_View == 6:
-                Image_LA_Preview='assets/preview/TEMP/Page6.png'
-                Preview_TXTColor=PG6txtc
-            if LA_View == 7:
-                Image_LA_Preview='assets/preview/TEMP/Page7.png'
-                Preview_TXTColor=PG7txtc
-            if LA_View == 8:
-                Image_LA_Preview='assets/preview/TEMP/Page8.png'
-                Preview_TXTColor=PG8txtc
-            if LA_View == 9:
-                Image_LA_Preview='assets/preview/TEMP/Page9.png'
-                Preview_TXTColor=PG9txtc
-            if LA_View == 10:
-                Image_LA_Preview='assets/preview/TEMP/Page10.png'
-                Preview_TXTColor=PG10txtc
+            Image_LA_Preview = f'assets/preview/TEMP/Page{LA_View}.png'
+            Preview_TXTColor = pg_txtc[LA_View - 1]
                         
             if not Path(Image_LA_Preview).is_file():
                 Image_LA_Preview = "assets/preview/default/defaultLA.png"
@@ -2231,7 +2024,7 @@ if 1==1:
 
         # CHECKING FOR CHANGES AND BUTTON PRESSES
         
-        if event == 'Change details':
+        if event == 'Change Details':
             firstrun=0
             exportable=0
             window['-Export-'].update(visible=False)
@@ -2241,7 +2034,7 @@ if 1==1:
         if event == 'Waves':
             os.system("assets\waves.png")
         
-        if event == '  - GENERATE THEME -  ':
+        if event == '  Generate Theme  ':
             graph = window['-Image_LS_Preview-']
             bbox = graph.Widget.winfo_rootx(), graph.Widget.winfo_rooty(), graph.Widget.winfo_rootx() + graph.Widget.winfo_width(), graph.Widget.winfo_rooty() + graph.Widget.winfo_height()
             ImageGrab.grab(bbox=bbox).save('assets/preview/TEMP/preview_lockscreen.png')
@@ -2286,7 +2079,7 @@ if 1==1:
                 
                 layoutPGx = [[sg.Column(layoutPG)]]
                 
-                windowPG = sg.Window("Progress Bar", layoutPGx,keep_on_top=True,no_titlebar=True,grab_anywhere=True,background_color='#015BBB',margins=(0,0),modal=False)
+                windowPG = sg.Window("Progress Bar", layoutPGx,keep_on_top=True,no_titlebar=True,grab_anywhere=True,background_color=BG,margins=(0,0),modal=False)
                 eventPG, valuesPG = windowPG.read(10)
                 if Path('assets/preview/TEMP/preview_thumbnail.png').is_file():
                     windowPG['-PREVIEW-'].draw_image(filename='assets/preview/TEMP/preview_thumbnail.png',location=(0,128))
@@ -2320,16 +2113,7 @@ if 1==1:
                     XML_NOT_TXTc=NOT_TXTc.replace('#','')
                     XML_TBC=TBC.replace('#','')
                     XML_TBTC=TBTC.replace('#','')
-                    XML_PG1txtc=PG1txtc.replace('#','')
-                    XML_PG2txtc=PG2txtc.replace('#','')
-                    XML_PG3txtc=PG3txtc.replace('#','')
-                    XML_PG4txtc=PG4txtc.replace('#','')
-                    XML_PG5txtc=PG5txtc.replace('#','')
-                    XML_PG6txtc=PG6txtc.replace('#','')
-                    XML_PG7txtc=PG7txtc.replace('#','')
-                    XML_PG8txtc=PG8txtc.replace('#','')
-                    XML_PG9txtc=PG9txtc.replace('#','')
-                    XML_PG10txtc=PG10txtc.replace('#','')
+                    xml_pg_txtc = [c.replace('#', '') for c in pg_txtc]
                     with open(THEME_XML, "w") as f:
                         print('<?THIS THEME WAS GENERATED USING THE VITA THEME BUILDER by ANTHJ>',file=f)
                     with open(THEME_XML, "a") as f: 
@@ -2383,85 +2167,15 @@ if 1==1:
 
                         print('<HomeProperty>',file=f)
                         print(' <m_bgParam>',file=f)
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg1t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg1.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG1w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG1txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg2t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg2.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG2w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG2txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg3t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg3.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG3w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG3txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg4t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg4.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG4w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG4txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg5t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg5.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG5w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG5txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg6t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg6.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG6w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG6txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg7t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg7.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG7w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG7txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg8t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg8.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG8w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG8txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg9t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg9.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG9w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG9txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
-                        
-                        print('     <BackgroundParam>',file=f)
-                        print('         <m_thumbnailFilePath>bg10t.png</m_thumbnailFilePath>',file=f)
-                        print('         <m_imageFilePath>bg10.png</m_imageFilePath>',file=f)
-                        print('         <m_waveType>'+str(PG10w)+'</m_waveType>',file=f)
-                        print('         <m_fontColor>ff'+XML_PG10txtc+'</m_fontColor>',file=f)
-                        print('         <m_fontShadow>1</m_fontShadow>',file=f)
-                        print('     </BackgroundParam>',file=f)
+                        for i in range(10):
+                            n = i + 1
+                            print('     <BackgroundParam>',file=f)
+                            print(f'         <m_thumbnailFilePath>bg{n}t.png</m_thumbnailFilePath>',file=f)
+                            print(f'         <m_imageFilePath>bg{n}.png</m_imageFilePath>',file=f)
+                            print(f'         <m_waveType>{pg_w[i]}</m_waveType>',file=f)
+                            print(f'         <m_fontColor>ff{xml_pg_txtc[i]}</m_fontColor>',file=f)
+                            print('         <m_fontShadow>1</m_fontShadow>',file=f)
+                            print('     </BackgroundParam>',file=f)
                         print(' </m_bgParam>',file=f)
                         
                         print(' <m_basePageFilePath>basePage.png</m_basePageFilePath>',file=f)
@@ -2532,114 +2246,14 @@ if 1==1:
                     os.system(cmdline2)
                     windowPG['-progressbar-'].update(current_count=3)
                     
-                    windowPG['CurrentProcess'].update('Converting image 1 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg1.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG1_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg1.png" -o "{}bg1.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg1t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG1_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg1t.png" -o "{}bg1t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=4)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 2 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg2.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG2_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg2.png" -o "{}bg2.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg2t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG2_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg2t.png" -o "{}bg2t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=5)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 3 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg3.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG3_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg3.png" -o "{}bg3.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg3t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG3_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg3t.png" -o "{}bg3t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=6)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 4 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg4.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG4_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg4.png" -o "{}bg4.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg4t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG4_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg4t.png" -o "{}bg4t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=7)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 5 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg5.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG5_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg5.png" -o "{}bg5.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg5t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG5_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg5t.png" -o "{}bg5t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=8)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 6 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg6.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG6_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg6.png" -o "{}bg6.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg6t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG6_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg6t.png" -o "{}bg6t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=9)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 7 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg7.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG7_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg7.png" -o "{}bg7.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg7t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG7_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg7t.png" -o "{}bg7t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=10)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 8 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg8.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG8_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg8.png" -o "{}bg8.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg8t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG8_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg8t.png" -o "{}bg8t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=11)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 9 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg9.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG9_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg9.png" -o "{}bg9.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg9t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG9_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg9t.png" -o "{}bg9t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
-                    windowPG['-progressbar-'].update(current_count=12)
-                    
-                    windowPG['CurrentProcess'].update('Converting image 10 . .')
-                    cmdline1 = ('call assets\scale.bat -source "{}" -target "{}bg10.png" -max-height 512 -max-width 960 -keep-ratio no -force yes').format(PG10_old,ThemePATH)
-                    cmdline2 = ('assets\pngquant.exe -f "{}bg10.png" -o "{}bg10.png"').format(ThemePATH,ThemePATH)
-                    cmdline3 = ('call assets\scale.bat -source "{}" -target "{}bg10t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes').format(PG10_old,ThemePATH)
-                    cmdline4 = ('assets\pngquant.exe -f "{}bg10t.png" -o "{}bg10t.png"').format(ThemePATH,ThemePATH)
-                    os.system(cmdline1)
-                    os.system(cmdline2)
-                    os.system(cmdline3)
-                    os.system(cmdline4)
+                    for i in range(10):
+                        n = i + 1
+                        windowPG['CurrentProcess'].update(f'Converting image {n} . .')
+                        os.system(f'call assets\\scale.bat -source "{pg_old[i]}" -target "{ThemePATH}bg{n}.png" -max-height 512 -max-width 960 -keep-ratio no -force yes')
+                        os.system(f'assets\\pngquant.exe -f "{ThemePATH}bg{n}.png" -o "{ThemePATH}bg{n}.png"')
+                        os.system(f'call assets\\scale.bat -source "{pg_old[i]}" -target "{ThemePATH}bg{n}t.png" -max-height 192 -max-width 360 -keep-ratio no -force yes')
+                        os.system(f'assets\\pngquant.exe -f "{ThemePATH}bg{n}t.png" -o "{ThemePATH}bg{n}t.png"')
+                        windowPG['-progressbar-'].update(current_count=3 + n)
                     windowPG['-progressbar-'].update(current_count=13)
                     windowPG['CurrentProcess'].update('Converting image notifications. .')
                     if NOTI_inew == "assets\preview\TEMP\ICONnew.png":
@@ -2706,26 +2320,10 @@ if 1==1:
                 ThemeBUILD["NOTIFICATION"]["Text Color"] = XML_NOT_TXTc
                 ThemeBUILD["INFOBAR"]["Bar Color"] = XML_TBC
                 ThemeBUILD["INFOBAR"]["Text Color"] = XML_TBTC
-                ThemeBUILD["WAVE PATTERNS"]["Page 1"] = PG1w
-                ThemeBUILD["WAVE PATTERNS"]["Page 2"] = PG2w
-                ThemeBUILD["WAVE PATTERNS"]["Page 3"] = PG3w
-                ThemeBUILD["WAVE PATTERNS"]["Page 4"] = PG4w
-                ThemeBUILD["WAVE PATTERNS"]["Page 5"] = PG5w
-                ThemeBUILD["WAVE PATTERNS"]["Page 6"] = PG6w
-                ThemeBUILD["WAVE PATTERNS"]["Page 7"] = PG7w
-                ThemeBUILD["WAVE PATTERNS"]["Page 8"] = PG8w
-                ThemeBUILD["WAVE PATTERNS"]["Page 9"] = PG9w
-                ThemeBUILD["WAVE PATTERNS"]["Page 10"] = PG10w
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 1"] = XML_PG1txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 2"] = XML_PG2txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 3"] = XML_PG3txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 4"] = XML_PG4txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 5"] = XML_PG5txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 6"] = XML_PG6txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 7"] = XML_PG7txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 8"] = XML_PG8txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 9"] = XML_PG9txtc
-                ThemeBUILD["PAGE TEXT COLORS"]["Page 10"] = XML_PG10txtc
+                for i in range(10):
+                    ThemeBUILD["WAVE PATTERNS"][f"Page {i+1}"] = pg_w[i]
+                for i in range(10):
+                    ThemeBUILD["PAGE TEXT COLORS"][f"Page {i+1}"] = xml_pg_txtc[i]
                 
                 windowPG['-progressbar-'].update(current_count=17)
                 windowPG['CurrentProcess'].update('Process complete!')
@@ -2755,20 +2353,20 @@ if 1==1:
         if event == 'CLOCKCOL':
             CLOCK_COLOR()
 
-        if event == 'Use DEFAULT music':
+        if event == 'Use Default Music':
             BGM = 'Default'
             window['BGM'].update(BGM)
             SCREEN = ('UPDADED')
 
-        if event == 'Use DEFAULT IconSet':
+        if event == 'Use Default Icons':
             ICOSET = 'Default'
             window['ICOSET'].update(ICOSET)
             SCREEN = ('UPDADED')
 
-        if event == 'Create NEW IconSet':
+        if event == 'Create Icon Set':
             with open("assets/tntmp", "w") as f:
                 f.write(ThemeName)
-            process = subprocess.Popen('IconBUILDER.exe')
+            process = subprocess.Popen(['python', 'Icon.py'])
 
         if not values['ICOSET'] == ICOSET_old:
             if values['ICOSET'] == 'Default':
@@ -2831,7 +2429,7 @@ if 1==1:
             ICOSET_old = values['ICOSET']
             SCREEN = ('UPDADED')
 
-        if event == 'Show / Hide preview':
+        if event == 'Show / Hide Preview':
             if NOT_View == 0:
                 NOT_View = 1
             else:
@@ -2845,36 +2443,11 @@ if 1==1:
         if event == 'TBTc':
             BAR_COLOR()
             
-        if event == 'PG1tc':
-            PAGE_TEXT = 1
-            PAGE_TEXT_COLOR()            
-        if event == 'PG2tc':
-            PAGE_TEXT = 2
-            PAGE_TEXT_COLOR()          
-        if event == 'PG3tc':
-            PAGE_TEXT = 3
-            PAGE_TEXT_COLOR()        
-        if event == 'PG4tc':
-            PAGE_TEXT = 4
-            PAGE_TEXT_COLOR()        
-        if event == 'PG5tc':
-            PAGE_TEXT = 5
-            PAGE_TEXT_COLOR()        
-        if event == 'PG6tc':
-            PAGE_TEXT = 6
-            PAGE_TEXT_COLOR()        
-        if event == 'PG7tc':
-            PAGE_TEXT = 7
-            PAGE_TEXT_COLOR()        
-        if event == 'PG8tc':
-            PAGE_TEXT = 8
-            PAGE_TEXT_COLOR()        
-        if event == 'PG9tc':
-            PAGE_TEXT = 9
-            PAGE_TEXT_COLOR()        
-        if event == 'PG10tc':
-            PAGE_TEXT = 10
-            PAGE_TEXT_COLOR()
+        for _n in range(1, 11):
+            if event == f'PG{_n}tc':
+                PAGE_TEXT = _n
+                PAGE_TEXT_COLOR()
+                break
               
         if not TBC == COLOR_BAR_old:
             COLOR_BAR_old = TBC
@@ -2896,169 +2469,31 @@ if 1==1:
             os.system(cmdB)
             LS_old = values['LS']
             SCREEN = ('UPDADED')
-        if not values['PG1'] == PG1_old:
-            NEW_image = values['PG1']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page1.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page1.png" -o "assets/preview/TEMP/Page1.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG1_old = values['PG1']
-            LA_View = 1
-            window['V1'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG2'] == PG2_old:
-            NEW_image = values['PG2']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page2.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page2.png" -o "assets/preview/TEMP/Page2.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG2_old = values['PG2']
-            LA_View = 2
-            window['V2'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG3'] == PG3_old:
-            NEW_image = values['PG3']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page3.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page3.png" -o "assets/preview/TEMP/Page3.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG3_old = values['PG3']
-            LA_View = 3
-            window['V3'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG4'] == PG4_old:
-            NEW_image = values['PG4']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page4.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page4.png" -o "assets/preview/TEMP/Page4.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG4_old = values['PG4']
-            LA_View = 4
-            window['V4'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG5'] == PG5_old:
-            NEW_image = values['PG5']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page5.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page5.png" -o "assets/preview/TEMP/Page5.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG5_old = values['PG5']
-            LA_View = 5
-            window['V5'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG6'] == PG6_old:
-            NEW_image = values['PG6']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page6.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page6.png" -o "assets/preview/TEMP/Page6.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG6_old = values['PG6']
-            LA_View = 6
-            window['V6'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG7'] == PG7_old:
-            NEW_image = values['PG7']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page7.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page7.png" -o "assets/preview/TEMP/Page7.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG7_old = values['PG7']
-            LA_View = 7
-            window['V7'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG8'] == PG8_old:
-            NEW_image = values['PG8']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page8.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page8.png" -o "assets/preview/TEMP/Page8.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG8_old = values['PG8']
-            LA_View = 8
-            window['V8'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG9'] == PG9_old:
-            NEW_image = values['PG9']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page9.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page9.png" -o "assets/preview/TEMP/Page9.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG9_old = values['PG9']
-            LA_View = 9
-            window['V9'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
-        if not values['PG10'] == PG10_old:
-            NEW_image = values['PG10']
-            cmdA = ('call assets\scale.bat -source "{}" -target "assets/preview/TEMP/Page10.png" -max-height 220 -max-width 390 -keep-ratio no -force yes').format(NEW_image)
-            cmdB = ('assets\pngquant.exe -f "assets/preview/TEMP/Page10.png" -o "assets/preview/TEMP/Page10.png"')
-            os.system(cmdA)
-            os.system(cmdB)
-            PG10_old = values['PG10']
-            LA_View = 10
-            window['V10'].update(button_color=('yellow','#015BBB'))
-            SCREEN = ('UPDADED')
+        for _i, _old in enumerate(pg_old):
+            _n = _i + 1
+            if values[f'PG{_n}'] != _old:
+                NEW_image = values[f'PG{_n}']
+                os.system(f'call assets\\scale.bat -source "{NEW_image}" -target "assets/preview/TEMP/Page{_n}.png" -max-height 220 -max-width 390 -keep-ratio no -force yes')
+                os.system(f'assets\\pngquant.exe -f "assets/preview/TEMP/Page{_n}.png" -o "assets/preview/TEMP/Page{_n}.png"')
+                pg_old[_i] = values[f'PG{_n}']
+                pg[_i] = values[f'PG{_n}']
+                LA_View = _n
+                window[f'V{_n}'].update(button_color=('#f0c040', '#1e3a5f'))
+                SCREEN = ('UPDADED')
 
-        if not values['PG1w'] == PG1w_old:
-            PG1w_old = values['PG1w']
-            PG1w = values['PG1w']
-        if not values['PG2w'] == PG2w_old:
-            PG2w_old = values['PG2w']
-            PG2w = values['PG2w']
-        if not values['PG3w'] == PG3w_old:
-            PG3w_old = values['PG3w']
-            PG3w = values['PG3w']
-        if not values['PG4w'] == PG4w_old:
-            PG4w_old = values['PG4w']
-            PG4w = values['PG4w']
-        if not values['PG5w'] == PG5w_old:
-            PG5w_old = values['PG5w']
-            PG5w = values['PG5w']
-        if not values['PG6w'] == PG6w_old:
-            PG6w_old = values['PG6w']
-            PG6w = values['PG6w']
-        if not values['PG7w'] == PG7w_old:
-            PG7w_old = values['PG7w']
-            PG7w = values['PG7w']
-        if not values['PG8w'] == PG8w_old:
-            PG8w_old = values['PG8w']
-            PG8w = values['PG8w']
-        if not values['PG9w'] == PG9w_old:
-            PG9w_old = values['PG9w']
-            PG9w = values['PG9w']
-        if not values['PG10w'] == PG10w_old:
-            PG10w_old = values['PG10w']
-            PG10w = values['PG10w']
+        for _i, _old in enumerate(pg_w_old):
+            _n = _i + 1
+            if values[f'PG{_n}w'] != _old:
+                pg_w_old[_i] = values[f'PG{_n}w']
+                pg_w[_i] = values[f'PG{_n}w']
             
         if not values['BGM'] == BGM_old:
             BGM_old = values['BGM']
             BGM = values['BGM']
         
-        if event == 'V1':
-            LA_View = 1
-            SCREEN = ('UPDADED')
-        if event == 'V2':
-            LA_View = 2
-            SCREEN = ('UPDADED')
-        if event == 'V3':
-            LA_View = 3
-            SCREEN = ('UPDADED')
-        if event == 'V4':
-            LA_View = 4
-            SCREEN = ('UPDADED')
-        if event == 'V5':
-            LA_View = 5
-            SCREEN = ('UPDADED')
-        if event == 'V6':
-            LA_View = 6
-            SCREEN = ('UPDADED')
-        if event == 'V7':
-            LA_View = 7
-            SCREEN = ('UPDADED')
-        if event == 'V8':
-            LA_View = 8
-            SCREEN = ('UPDADED')
-        if event == 'V9':
-            LA_View = 9
-            SCREEN = ('UPDADED')
-        if event == 'V10':
-            LA_View = 10
+        for _n in range(1, 11):
+            if event == f'V{_n}':
+                LA_View = _n
+                SCREEN = ('UPDADED')
+                break
             SCREEN = ('UPDADED')
